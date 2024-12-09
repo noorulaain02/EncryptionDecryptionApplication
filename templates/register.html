@@ -1,0 +1,67 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Register | Image Encryption And Decryption Application</title>
+    <style>
+        .custom-alert {
+            color: red; /* Makes the text red */
+            background-color: #f8d7da; /* Optional: Red background for the alert */
+            border-color: #f5c6cb; /* Optional: Border matching red theme */
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #e0f7fa; /* Light blue background color */
+        }
+    </style>
+</head>
+<body style="background-size: cover; background-position: center; background-repeat: no-repeat; background-image: url('Rectangle.png'); ">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 80px;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Image Encryption And Decryption Application</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+        <div class="card shadow-lg p-4" style="width: 100%; max-width: 500px;">
+                        
+            <h2 class="text-center mb-4">Register</h2>
+    <!-- Error Messages -->
+    {% if messages %}
+    <div class="custom-alert" role="alert">
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary w-100">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
