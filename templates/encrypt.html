@@ -17,6 +17,8 @@
             flex-direction: column;
         }
         .center {
+          display: flex;
+          flex-wrap: wrap;
           display: block;
           margin-left: auto;
           margin-right: auto;
@@ -28,6 +30,59 @@
           align-items: center;
           padding=50%; 
       }
+      /* Styling for the copy button and message */
+        .copy-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        #copy-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        #copy-btn:hover {
+            background-color: #45a049;
+        }
+        #copy-message {
+            color: green;
+            display: none; /* Hidden by default */
+            font-weight: bold;
+        }
+
+        /* Share buttons styling */
+        .share-buttons {
+            margin-top: 15px;
+        }
+        .share-buttons a {
+            margin-right: 10px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+        .whatsapp-btn {
+            background-color: #25D366;
+        }
+        .gmail-btn {
+            background-color: #D44638;
+        }
+        .whatsapp-btn:hover, .gmail-btn:hover {
+            opacity: 0.8;
+        }
+
+        /* Send Button (Blue) */
+        .send-btn {
+            background-color: #007BFF; /* Blue color */
+        }
+        .send-btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
     </style>
 </head>
 
@@ -89,30 +144,91 @@
   </div>
 </div>
   
-<br><br>
+<br>
 <div class="container">
 <div class="Center">
-  <h1 class="mb-4">Encrypted Image</h1>
+  <h3 class="mb-4">Encrypted Image</h3>
   {% if encrypt_image_url %}
       <div style="align-items: center" class="image-container">
           <img src="{{ encrypt_image_url }}" alt="Encrypted Image" class="img-fluid">
       </div>
-      <p>Encryption Key:   {{ encryption_key }}</p>
+      <p style="align-items: center">Encryption Key: <strong id="encryption-key">{{ encryption_key }}</strong></p>
+      <!-- <p> NOTE: COPY THE ENCRYPTION KEY AND SEND IT TO THE USER
+         THROUGH THE OTHER MEDIUM OR CHANNELS OF TRANSMISSION.</p>-->
   {% else %}
       <p>No encrypted image found.</p>
   {% endif %}
 </div>
 </div>
+<div class="container">
+  <div class="Center">
+   <p style="color:Red"> <B>NOTE: COPY THE ENCRYPTION KEY AND SEND IT TO THE USER
+    THROUGH THE OTHER MEDIUM</B></p>
 
+    <div class="container">
+      <div class="Center">
+    <!-- Copy button -->
+    <div class="copy-container">
+      <button id="copy-btn" onclick="copyToClipboard()">Copy Key</button>
+      <span id="copy-message">Copied!</span>
+  </div>
+</div>
+</div>
+<div class="container">
+  <div class="Center">
+  <!-- Share buttons -->
+  <div class="share-buttons">
+      <!-- WhatsApp button -->
+      <a id="whatsapp-btn" class="whatsapp-btn" target="_blank">
+          Share on WhatsApp
+      </a>
+      <!-- Gmail button -->
+      <a id="gmail-btn" class="gmail-btn" target="_blank">
+          Share via Gmail
+      </a>
+  </div>
+</div>
+</div>
+  <!-- JavaScript -->
+  <script>
+      // Function to copy encryption key to clipboard
+      function copyToClipboard() {
+          const keyElement = document.getElementById("encryption-key");
+          const textToCopy = keyElement.textContent;
+
+          navigator.clipboard.writeText(textToCopy).then(function () {
+              const message = document.getElementById("copy-message");
+              message.style.display = "inline"; // Show the 'Copied' message
+              setTimeout(() => {
+                  message.style.display = "none"; // Hide message after 2 seconds
+              }, 2000);
+          });
+      }
+
+      // Function to set up share buttons dynamically
+      document.addEventListener("DOMContentLoaded", function () {
+          const encryptionKey = document.getElementById("encryption-key").textContent;
+
+          // WhatsApp share link
+          const whatsappMessage = `Here is the encryption key: ${encryptionKey}`;
+          const whatsappURL = `https://api.whatsapp.com/send?text=${encodeURIComponent(whatsappMessage)}`;
+          document.getElementById("whatsapp-btn").href = whatsappURL;
+
+          // Gmail share link
+          const gmailSubject = "Encryption Key";
+          const gmailBody = `Here is the encryption key: ${encryptionKey}`;
+          const gmailURL = `https://mail.google.com/mail/?view=cm&fs=1&to=&su=${encodeURIComponent(gmailSubject)}&body=${encodeURIComponent(gmailBody)}`;
+          document.getElementById("gmail-btn").href = gmailURL;
+      });
+  </script>
+  <br>
+</div>
+</div>
 <div class="container">
 <div class="Center">
-  <a href="send/" class="btn btn-success">Send</a>
+  <a href="send/" class="btn send-btn">Send</a>
 </div>
 </div>
-
-<script>
-
-</script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <script>
