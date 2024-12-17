@@ -286,7 +286,7 @@ def send_encrypted_image(request, image_id):
             receiver = User.objects.get(username=receiver_username)
         except User.DoesNotExist:
             messages.error(request, "User does not exist")
-            return redirect('send_page', image_id=image_id)
+            return redirect('encrypt_image', image_id=image_id)
 
         # Store the sent image and complex matrix in the 'Send' table
         Send.objects.create(
@@ -297,10 +297,10 @@ def send_encrypted_image(request, image_id):
         )
         
         messages.success(request, f"Image sent to {receiver_username} successfully!")
-        return redirect('send_page', image_id=image_id)
+        return redirect('encrypt_image', image_id=image_id)
     else:
         messages.error(request, "Invalid request method")
-        return redirect('send_page', image_id=image_id)
+        return redirect('encrypt_image', image_id=image_id)
 
 '''
 def send_encrypted_image(request, image_id):
@@ -371,7 +371,7 @@ def decryption_page(request):
     
     # Pass the received images to the template
     return render(request, 'decryption_page.html', {'received_images': received_images})
-
+'''
 def decrypt_image(request, image_id):
     image_instance = get_object_or_404(Receive, id=image_id)
 
@@ -495,7 +495,7 @@ def decrypt_image(request, image_id):
     })
  
     return render(request, 'decrypt_image.html', {'image_instance': image_instance})
-'''
+
 
 @login_required
 def delete_received_image(request, image_id):
