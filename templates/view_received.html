@@ -126,8 +126,8 @@
       
         {% csrf_token %}
         <div class="form-group">
-            <label for="encryption_key">Enter Encryption Key (8 characters):</label>
-            <input type="text" id="encryption_key" name="encryption_key" class="form-control" required minlength="8" maxlength="8">
+            <label for="encryption_key">Enter Encryption Key (16 characters):</label>
+            <input type="text" id="encryption_key" name="encryption_key" class="form-control" required minlength="16" maxlength="16">
         </div>
         <br>
         <button type="submit" class="btn btn-primary">Decrypt Image</button>
