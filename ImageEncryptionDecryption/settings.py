@@ -17,9 +17,9 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
+BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -29,7 +29,7 @@ SECRET_KEY = "django-insecure-e*y0%p-8-+3ozgkq^gdsyt!y($j0v961(vm1d9h1!zqxt@ch!c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['imageencryptdecrypt.onrender.com', '127.0.0.1']
+ALLOWED_HOSTS = ['encryptiondecryptionapp.onrender.com', '127.0.0.1','*']
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    
 ]
 
 MIDDLEWARE = [
@@ -52,6 +53,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    
 ]
 
 ROOT_URLCONF = "ImageEncryptionDecryption.urls"
@@ -78,29 +80,14 @@ WSGI_APPLICATION = "ImageEncryptionDecryption.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-#DATABASES = {
- #   "default": {
- #       "ENGINE": "django.db.backends.sqlite3",
-  #      'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
- #   }
-#}
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
-if "RENDER" in os.environ:
-    # Use a persistent path for SQLite in Render
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': '/opt/render/project/.data/db.sqlite3',  # Render's persistent directory
-        }
-    }
-else:
-    # Local development
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
+
 
 
 # Password validation
@@ -140,20 +127,20 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-
+STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles/")
 # Added Manually
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,"static")
+    os.path.join(BASE_DIR,"static/")
 ]
 
 import os
 
 # Base directory of the project
-BASE_DIR = Path(__file__).resolve().parent.parent
+#BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Media files (uploads) settings
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Ensure DEBUG is set to True for development
-DEBUG = True
+DEBUG = False
