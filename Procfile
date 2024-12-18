@@ -1,0 +1,1 @@
+web: gunicorn ImageEncryptionDecryption.wsgi --log-file -
