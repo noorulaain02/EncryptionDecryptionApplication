@@ -78,12 +78,29 @@ WSGI_APPLICATION = "ImageEncryptionDecryption.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#DATABASES = {
+ #   "default": {
+ #       "ENGINE": "django.db.backends.sqlite3",
+  #      'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+ #   }
+#}
+
+if "RENDER" in os.environ:
+    # Use a persistent path for SQLite in Render
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': '/opt/render/project/.data/db.sqlite3',  # Render's persistent directory
+        }
     }
-}
+else:
+    # Local development
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 
 # Password validation
