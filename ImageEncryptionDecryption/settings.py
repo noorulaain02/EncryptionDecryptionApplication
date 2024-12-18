@@ -17,7 +17,7 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -29,7 +29,7 @@ SECRET_KEY = "django-insecure-e*y0%p-8-+3ozgkq^gdsyt!y($j0v961(vm1d9h1!zqxt@ch!c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['encryptiondecryptionapp.onrender.com']
+ALLOWED_HOSTS = ['encryptiondecryptionapp.onrender.com', '127.0.0.1']
 
 
 # Application definition
@@ -81,7 +81,7 @@ WSGI_APPLICATION = "ImageEncryptionDecryption.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
