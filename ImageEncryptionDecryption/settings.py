@@ -27,9 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-e*y0%p-8-+3ozgkq^gdsyt!y($j0v961(vm1d9h1!zqxt@ch!c"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['encryptiondecryptionapp.onrender.com', '127.0.0.1','*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -127,11 +127,11 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles/")
+#STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles/")
 # Added Manually
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,"static/")
-]
+#STATICFILES_DIRS = [
+ #   os.path.join(BASE_DIR,"static/")
+#]
 
 import os
 
@@ -143,4 +143,5 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Ensure DEBUG is set to True for development
-DEBUG = False
+DEBUG = True
+
