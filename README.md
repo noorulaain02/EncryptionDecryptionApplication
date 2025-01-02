@@ -38,14 +38,63 @@ This project implements an **Image Encryption and Decryption System** that secur
 
 ---
 
-## Installation
+## Installation and Setup
 
 ### Prerequisites
 - Python 3.8+
 - pip (Python package manager)
 
-### Steps
+
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/image-encryption-decryption.git
+   git clone https://github.com/noorulaain02/image-encryption-decryption.git
    cd image-encryption-decryption
+
+2. Install Dependencies
+   ```bash
+   pip install -r requirements.txt
+
+3. Run Database Migrations
+   ```bash
+   python manage.py makemigrations
+   python manage.py migrate
+
+4. Start the server
+   ```bash
+   python manage.py runserver
+
+5. Access the application at http://127.0.0.1:8000/.
+
+## Directory Structure
+-`ImageEncryptionDecryption/`
+   - `EncryptDecrypt/` contains your Django app logic, including templates, models, views, and static assets.
+        - `admin.py`
+        - `apps.py`
+        - `forms.py`
+        - `models.py`
+        - `urls.py`
+        - `views.py`
+   - `ImageEncryptionDecryption/`
+        - `settings.py`
+        - `urls.py`
+        - `wsgi.py`
+   - `media/` is used to store dynamically generated files such as encrypted, decrypted, and uploaded images.
+   - `static/` is for collected static files used in production.
+   - `templates/` 
+   - `db.sqlite3` is the database file.
+   - `manage.py` is the Django management script.
+   - `requirements.txt` lists all the dependencies.
+   - `README.md` is your project description file.
+     
+## Known Issue
+1. Debug Mode Deployment: Ensure DEBUG = False in production to avoid security risks.
+2. SQLite Fetch Bug: May occur if the database is not configured properly for deployment.
+
+## Note:
+Use the encryption key responsibly and ensure secure sharing through trusted channels. This project is for educational purposes and is not recommended for critical security applications.
+
+📧 #Contact
+For questions or support, please contact:
+
+- Email: noorulaain34ghazi@gmail.com
+- GitHub: noorulaain02
