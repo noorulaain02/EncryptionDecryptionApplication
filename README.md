@@ -88,7 +88,7 @@ This project implements an **Image Encryption and Decryption System** that secur
 ## Note:
 Use the encryption key responsibly and ensure secure sharing through trusted channels. This project is for educational purposes and is not recommended for critical security applications.
 
-📧 #Contact
+ #Contact
 For questions or support, please contact:
 
 - Email: noorulaain34ghazi@gmail.com
